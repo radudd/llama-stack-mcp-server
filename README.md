@@ -154,19 +154,19 @@ oc new-project llama-stack-mcp-demo
 
 ### Build and deploy the helm chart
 
-By default the `device` variable is set to `gpu`. Change the value of `device` in these files to the desired hardware to run on [gpu, cpu, hpu]:
-- helm/llama-stack/values.yaml
-- helm/llama3.2-3b/values.yaml
-
 Deploy the complete Llama Stack with MCP servers using the umbrella chart:
 
 ```bash
+# Set device, options: [gpu, cpu, hpu]
+export DEVICE="gpu"
 
 # Build dependencies (downloads and packages all required charts)
 helm dependency build ./helm/llama-stack-mcp
 
-# Deploy everything with a single command
-helm install llama-stack-mcp ./helm/llama-stack-mcp 
+# Deploy everything onto the target device with a single command
+helm install llama-stack-mcp ./helm/llama-stack-mcp --set device=$DEVICE \
+  --set llama-stack.device=$DEVICE \
+  --set llama3-2-3b.device=$DEVICE
 ```
 
 **Note:** The `llama-stack` pod will be in `CrashLoopBackOff` status until the Llama model is fully loaded and being served. This is normal behavior as the Llama Stack server requires the model endpoint to be available before it can start successfully.
