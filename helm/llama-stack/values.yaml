@@ -64,7 +64,6 @@ affinity: {}
 # Llama Stack configuration
 llamaStack:
   inferenceModel: "llama3-2-3b"
-  vllmUrl: "http://llama3-2-3b-{{ .Values.device }}-predictor:8080/v1"
 
 # Environment variables
 env:
