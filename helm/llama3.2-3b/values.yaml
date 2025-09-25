@@ -117,11 +117,11 @@ servingRuntime:
     templateDisplayName: "vLLM CPU ServingRuntime for KServe"
     templateName: "vllm-cpu-runtime"
     acceleratorName: "None"
-    image: "quay.io/ecosystem-appeng/vllm:cpu-v0.9.2"
+    image: "quay.io/modh/vllm:vllm-cpu-v2-25-on-push-h8xq2-build-s390x-image"
   hpu:
     recommendedAccelerators:
       - "habana.ai/gaudi"
     templateDisplayName: "vLLM Intel Gaudi Accelerator ServingRuntime for KServe"
     templateName: "vllm-gaudi-runtime"
     acceleratorName: "gaudi-hpu-profile"
-    image: "quay.io/modh/vllm:vllm-gaudi-v2-22-on-push-jgj5q-build-container"
+    image: "quay.io/modh/vllm:vllm-gaudi-v2-25-on-push-n7985-build-images"
