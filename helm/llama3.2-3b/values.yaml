@@ -104,7 +104,7 @@ servingRuntime:
     templateDisplayName: "vLLM CPU ServingRuntime for KServe"
     templateName: "vllm-cpu-runtime"
     acceleratorName: "None"
-    image: "quay.io/modh/vllm:vllm-cpu-v2-25-on-push-h8xq2-build-s390x-image"
+    image: "quay.io/rh-aiservices-bu/vllm-cpu-openai-ubi9:0.3"
   hpu:
     recommendedAccelerators:
       - "habana.ai/gaudi"
