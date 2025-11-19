@@ -108,9 +108,12 @@ This seamless integration allows the LLM to access real-time data and perform ac
 
 ### Minimum hardware requirements
 
-- 1 GPU required (NVIDIA L40, A10, or similar)
 - 8+ vCPUs
 - 24+ GiB RAM
+
+#### Optional, depending on selected hardware platform
+- 1 GPU (NVIDIA L40, A10, or similar)
+- 1 Intel® Gaudi® AI Accelerator
 
 ### Required software
 
@@ -157,12 +160,16 @@ oc new-project llama-stack-mcp-demo
 Deploy the complete Llama Stack with MCP servers using the umbrella chart:
 
 ```bash
+# Set device, options: [gpu, hpu]
+export DEVICE="gpu"
 
 # Build dependencies (downloads and packages all required charts)
 helm dependency build ./helm/llama-stack-mcp
 
-# Deploy everything with a single command
-helm install llama-stack-mcp ./helm/llama-stack-mcp 
+# Deploy everything onto the target device with a single command
+helm install llama-stack-mcp ./helm/llama-stack-mcp --set device=$DEVICE \
+  --set llama-stack.device=$DEVICE \
+  --set llama3-2-3b.device=$DEVICE
 ```
 
 **Note:** The `llama-stack` pod will be in `CrashLoopBackOff` status until the Llama model is fully loaded and being served. This is normal behavior as the Llama Stack server requires the model endpoint to be available before it can start successfully.
@@ -265,6 +272,7 @@ oc logs -l app.kubernetes.io/name=custom-mcp-server
 
 # Test the service connectivity
 oc exec -it deployment/llama-stack -- curl http://custom-mcp-server/health
+```
 
 ## Cleanup
 
