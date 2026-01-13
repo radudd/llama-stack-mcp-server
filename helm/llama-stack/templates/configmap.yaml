@@ -145,10 +145,14 @@ data:
       provider_id: rag-runtime
     - toolgroup_id: builtin::wolfram_alpha
       provider_id: wolfram-alpha
+    - toolgroup_id: mcp::openshift
+      provider_id: model-context-protocol
+      mcp_endpoint:
+        uri: http://ocp-mcp-server:8000/sse  
     - toolgroup_id: mcp::weather
       provider_id: model-context-protocol
       mcp_endpoint:
-        uri: http://mcp-weather/sse
+        uri: http://weather-mcp-server:8000/sse
     - toolgroup_id: mcp::internal-hr
       provider_id: model-context-protocol
       mcp_endpoint:
